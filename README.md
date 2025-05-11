@@ -1311,17 +1311,17 @@ The Park transformation is mathematically implemented as follows:
 
 The **Speed PI Controller** compares the actual rotor speed \( \omega \) with the reference speed \( \omega_{\text{ref}} \). The error in speed \( e_\omega \) is calculated as:
 
-\[
+```math
 e_\omega = \omega_{\text{ref}} - \omega
-\]
+```
 
 This error is fed into a **Proportional-Integral (PI) controller** to produce the desired torque current \( i_q^* \), which is used to control the motor's torque production. The control law for \( i_q^* \) is given by:
 
-\[
+```math
 i_q^* = K_p^\omega \cdot e_\omega + K_i^\omega \cdot \int e_\omega \, dt
-\]
+```
 
-Where:
+### Where,
 - \( K_p^\omega \) is the **proportional gain**.
 - \( K_i^\omega \) is the **integral gain**.
 - \( \int e_\omega \, dt \) is the integral of the speed error over time, which helps eliminate steady-state error.
@@ -1338,21 +1338,21 @@ The **Current Control PI Loops** are designed to independently control the d-axi
 
 The **d-axis** current \( i_d \) is responsible for controlling the flux in the motor, often linked to the magnetizing current. The error in the d-axis current \( e_d \) is given by:
 
-\[
+```math
 e_d = i_d^* - i_d
-\]
+```
 
-Where:
+### Where,
 - \( i_d^* \) is the reference direct-axis current.
 - \( i_d \) is the actual direct-axis current measured from the motor.
 
 The PI control law for the d-axis voltage \( v_d \) is:
 
-\[
+```math
 v_d = K_p^d \cdot e_d + K_i^d \cdot \int e_d \, dt
-\]
+```
 
-Where:
+### Where,
 - \( K_p^d \) is the **proportional gain** for the d-axis.
 - \( K_i^d \) is the **integral gain** for the d-axis.
 
@@ -1360,21 +1360,21 @@ Where:
 
 The **q-axis** current \( i_q \) is responsible for controlling the torque in the motor, and the error in the q-axis current \( e_q \) is:
 
-\[
+```math
 e_q = i_q^* - i_q
-\]
+```
 
-Where:
+### Where,
 - \( i_q^* \) is the reference quadrature-axis current.
 - \( i_q \) is the actual quadrature-axis current measured from the motor.
 
 The PI control law for the q-axis voltage \( v_q \) is:
 
-\[
+```math
 v_q = K_p^q \cdot e_q + K_i^q \cdot \int e_q \, dt
-\]
+```
 
-Where:
+### Where,
 - \( K_p^q \) is the **proportional gain** for the q-axis.
 - \( K_i^q \) is the **integral gain** for the q-axis.
 
@@ -1403,22 +1403,6 @@ In combination, these controllers allow for the **decoupling** of the flux and t
 | \( v_d, v_q \)      | Control voltages for d-axis and q-axis           |
 | \( K_p, K_i \)      | Proportional and Integral gains for the controllers |
 | \( e_d, e_q, e_\omega \) | Error terms for d-axis, q-axis, and speed     |
-
----
-
-## Applications
-
-- **Speed regulation** in motors using PI control loops.
-- **Decoupling of flux and torque** components for efficient motor control in FOC.
-- **Torque production** regulation via \( i_q \) and flux control via \( i_d \).
-- **Adaptive motor control** systems that respond to changes in load and speed.
-- **Voltage modulation** (e.g., SVPWM or SPWM) after current control is performed.
-
----
-
-## License
-
-This content is provided for **educational and research purposes**.
 
 ---
 
@@ -1649,22 +1633,6 @@ Generates PWM switching signals from the three-phase voltages to apply to the mo
 SVPWM:
 - Maximizes bus voltage usage
 - Reduces harmonic distortion
-
----
-
-### 🔌 8. Three-Phase Inverter
-
-- A six-switch bridge using MOSFETs/IGBTs
-- Converts PWM signals into sinusoidal 3-phase voltages
-- Drives the AC motor
-
----
-
-### 🧭 9. Rotor Position and Speed Feedback
-
-- Obtained from a rotary encoder or resolver
-- Provides \( \theta \) and \( \omega \) for Park/Inverse Park transforms and speed loop
-- Essential for correct orientation of control vectors
 
 ---
 
