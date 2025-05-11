@@ -1309,7 +1309,7 @@ The Park transformation is mathematically implemented as follows:
 
 ### 🎯 Speed PI Controller
 
-The **Speed PI Controller** compares the actual rotor speed \( \omega \) with the reference speed \( \omega_{\text{ref}} \). The error in speed \( e_\omega \) is calculated as:
+The **Speed PI Controller** compares the actual rotor speed ($\omega$) with the reference speed ($\omega_{\text{ref}}$). The speed error ($e_\omega$) is calculated as:
 
 ```math
 e_\omega = \omega_{\text{ref}} - \omega
