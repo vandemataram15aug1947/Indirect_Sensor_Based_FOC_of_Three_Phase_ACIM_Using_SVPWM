@@ -1,8 +1,6 @@
 # Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM
 
-# Indirect Sensor-Based Field-Oriented Control (FOC) for a Three-Phase AC Induction Motor Using Space Vector Pulse Width Modulation (SVPWM)
-
-## 1. Overview
+## Overview
 This project implements Indirect Sensored Field-Oriented Control (FOC) for a Three-Phase AC Induction Motor (ACI). It utilizes a rotor position sensor, Clarke and Park Transforms, Proportional-Integral (PI) Controllers, and Space Vector Pulse Width Modulation (SVPWM) to achieve precise speed and torque control. The goal is to ensure optimal motor performance with reduced harmonic distortion, improved dynamic response, and better efficiency.
 
 ## ⚙️ What Is Field-Oriented Control (FOC)?
