@@ -1586,67 +1586,64 @@ The time-response of the individual components of equivalent balanced αβ and a
 
 ## Equations (αβ → abc)
 
-The following equation describes the Inverse Clarke transform computation:
+The following equation describes the **Inverse Clarke Transform** computation:
 
 ```math
 \begin{bmatrix}
 f_a \\
 f_b \\
-f_c
-\end{bmatrix}
-=
-\begin{bmatrix}
-1 & 0 \\
--0.5 & \frac{\sqrt{3}}{2} \\
--0.5 & -\frac{\sqrt{3}}{2}
-\end{bmatrix}
-\begin{bmatrix}
-f_\alpha \\
-f_\beta
-\end{bmatrix}
-```
-
-This form assumes the zero-sequence component is zero (which is valid in motor applications with balanced loads).
-
----
-
-## Full Inverse Clarke Transform (αβ0 → abc)
-
-If the zero-sequence component (`f₀`) is non-zero:
-
-```math
-\begin{bmatrix}
-f_a \\
-f_b \\
-f_c
+f_c \\
 \end{bmatrix}
 =
 \begin{bmatrix}
 1 & 0 & 1 \\
--0.5 & \frac{\sqrt{3}}{2} & 1 \\
--0.5 & -\frac{\sqrt{3}}{2} & 1
+-\frac{1}{2} & \frac{\sqrt{3}}{2} & 1 \\
+-\frac{1}{2} & -\frac{\sqrt{3}}{2} & 1 \\
 \end{bmatrix}
 \begin{bmatrix}
-f_\alpha \\
-f_\beta \\
-f_0
+f_α \\
+f_β \\
+f₀ \\
 \end{bmatrix}
 ```
 
-This version is more general but not typically needed in most FOC systems.
+For balanced systems like motors, the zero-sequence component calculation is always zero:
 
----
+```math
+i_a + i_b + i_c = 0
+```
+
+Therefore, you can use only two current sensors in three-phase motor drives, where you can calculate the third phase as:
+
+```math
+i_c = -(i_a + i_b)
+```
+
+By using these equations, the block implements the **Inverse Clarke Transform** as:
+
+```math
+\begin{bmatrix}
+f_a \\
+f_b \\
+f_c \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+-\frac{1}{2} & \frac{\sqrt{3}}{2} \\
+-\frac{1}{2} & -\frac{\sqrt{3}}{2} \\
+\end{bmatrix}
+\begin{bmatrix}
+f_α \\
+f_β \\
+\end{bmatrix}
+```
 
 ### Where,
 
-- `f_a` is the **Phase-A component** in the `abc` frame.
-- `f_b` is the **Phase-B component** in the `abc` frame.
-- `f_c` is the **Phase-C component** in the `abc` frame.
-- `f_α` is the **Alpha-axis component** in the stationary `αβ` frame.
-- `f_β` is the **Beta-axis component** in the stationary `αβ` frame.
-- `f₀` is the **Zero-sequence component** (optional in balanced systems).
-
----
+- `f_α` and `f_β` are the balanced two-phase orthogonal components in the **stationary αβ reference frame**.
+- `f₀` is the **zero-sequence component** in the stationary αβ reference frame.
+- `f_a`, `f_b`, and `f_c` are the balanced three-phase components in the **abc reference frame**.
 
 ### 🔲 7. Space Vector PWM (SVPWM)
 
