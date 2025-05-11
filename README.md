@@ -1097,7 +1097,7 @@ For example, the block accepts either `a` and `b` input values or the multiplexe
 * The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/9a5dc663665fb4e69fff79570d258ed58f25713f/Clarke%20Transformation/The%20Stator%20Windings%20in%20the%20ABC%20Reference%20Frame%20and%20the%20Stationary%20AlphaBeta%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/9a5dc663665fb4e69fff79570d258ed58f25713f/Clarke%20Transformation/The%20Stator%20Windings%20in%20the%20ABC%20Reference%20Frame%20and%20the%20Stationary%20AlphaBeta%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1106,14 +1106,14 @@ For example, the block accepts either `a` and `b` input values or the multiplexe
 * The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/9a5dc663665fb4e69fff79570d258ed58f25713f/Clarke%20Transformation/Equivalent%20Alpha%20and%20Beta%20Components%20in%20the%20Stationary%20AlphaBeta%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/9a5dc663665fb4e69fff79570d258ed58f25713f/Clarke%20Transformation/Equivalent%20Alpha%20and%20Beta%20Components%20in%20the%20Stationary%20AlphaBeta%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
 
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/64b8573f64bbaab2b215a50492f673aace25fb89/Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/64b8573f64bbaab2b215a50492f673aace25fb89/Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="600">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
