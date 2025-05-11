@@ -1256,9 +1256,8 @@ The figures show the time-response of the individual components of the `αβ` an
 
 ---
 
-## Park Transform Equation (αβ → dq)
+## Equations (αβ → dq)
 
-### Equations:
 The Park transformation is mathematically implemented as follows:
 
 - **When the d-axis aligns with the α-axis**:
@@ -1425,9 +1424,8 @@ This content is provided for **educational and research purposes**.
 
 ---
 
-### 🔄 5. Inverse Park Transformation (dq → αβ)
 
-# Inverse Park Transform
+# 🧮 Inverse Park Transformation (dq → αβ)
 
 ## Description
 
