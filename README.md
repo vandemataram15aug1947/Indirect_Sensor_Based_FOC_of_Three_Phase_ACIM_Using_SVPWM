@@ -1249,7 +1249,7 @@ The figures show the time-response of the individual components of the `αβ` an
 * The q-axis aligns with the α-axis.
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20%20and%20DQ%20Reference%20Frames.png" width="550">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/da6ae1cd867bdef593fa53a7d2959e6d16bf077e/Park%20Transformation/Q-Axis%20Aligns%20with%20the%20Alpha-Axis.png" width="550">
 </p>  
 
 <p align="center"><b>Figure 11:</b> The Q-Axis Aligns with the Alpha-Axis</p>  
@@ -1429,69 +1429,65 @@ This content is provided for **educational and research purposes**.
 
 ## Description
 
-Description
-The Inverse Park Transform block computes the inverse Park transformation of the orthogonal direct (d) and quadrature (q) axes components or the multiplexed dq0 components in the rotating dq reference frame.
+The Inverse Park Transform block computes the inverse Park transformation of the orthogonal direct (`d`) and quadrature (`q`) axes components or the multiplexed `dq0` components in the rotating `dq` reference frame.
 
-You can configure the block to align either the d- or q-axis with the α-axis at time t = 0.
+You can configure the block to align either the `d`- or `q`-axis with the `α`-axis at time `t = 0`.
 
 The block accepts the following inputs:
 
-Either d-q axes components or multiplexed components dq0 in the rotating reference frame. Use the Number of inputs parameter to use either two or three inputs.
+* Either `d-q` axes components or multiplexed components `dq0` in the rotating reference frame. Use the Number of inputs parameter to use either two or three inputs.
 
-Sine and cosine values of the corresponding angles of transformation.
+* Sine and cosine values of the corresponding angles of transformation.
 
-When using two-input configuration, it outputs the two-phase orthogonal components in the stationary αβ reference frame. When using three-input configuration, it outputs multiplexed components αβ0.
+When using two-input configuration, it outputs the two-phase orthogonal components in the stationary `αβ` reference frame. When using three-input configuration, it outputs multiplexed components `αβ0`.
 
 For a balanced system, the zero component is equal to zero.
 
-The figures show a rotating dq reference frame and the α-β axes components in an αβ reference frame for when:
+The figures show a rotating `dq` reference frame and the `α-β` axes components in an `αβ` reference frame for when:
 
-The d-axis aligns with the α-axis.
-
-The d-axis aligns with the α-axis.
-
-* The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
+* The `d`-axis aligns with the `α`-axis.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/A%20Rotating%20DQ%20Reference%20Frame%20%20in%20an%20AlphaBeta%20reference%20frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 12:</b> A Rotating DQ Reference Frame  in an AlphaBeta reference frame</p>  
 
 
-* The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
+* The `q`-axis aligns with the `α`-axis.
 
  <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20in%20an%20AlphaBeta%20Reference%20Frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 13:</b> The Alpha-Beta Axes Components in an AlphaBeta Reference Frame</p>  
+
+In both cases, the angle `θ = ωt`, where:
+
+* `θ` is the angle between the `α`- and `d`-axes for the `d`-axis alignment or the angle between the `α`- and `q`-axes for the `q`-axis alignment. It indicates the angular position of the rotating `dq` reference frame with respect to the `α`-axis.
+
+`ω` is the rotational speed of the `d-q` reference frame.
+
+t is the time, in seconds, from the initial alignment.
+
+The figures show the time-response of the individual components of the `αβ` and `dq` reference frames when:
+
+* The `d`-axis aligns with the `α`-axis.
 
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="550">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 14:</b> The D-Axis Aligns with the Alpha-Axis</p>  
 
+* The `q`-axis aligns with the `α`-axis.
 
+<p align="center">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="550">
+</p>  
 
-
-The q-axis aligns with the α-axis.
-
-
-
-In both cases, the angle θ = ωt, where:
-
-θ is the angle between the α- and d-axes for the d-axis alignment or the angle between the α- and q-axes for the q-axis alignment. It indicates the angular position of the rotating dq reference frame with respect to the α-axis.
-
-ω is the rotational speed of the d-q reference frame.
-
-t is the time, in seconds, from the initial alignment.
-
-The figures show the time-response of the individual components of the αβ and dq reference frames when:
-
-The d-axis aligns with the α-axis.
+<p align="center"><b>Figure 15:</b> The Q-Axis Aligns with the Alpha-Axis</p>  
 
 ---
 
