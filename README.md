@@ -1693,6 +1693,16 @@ The vector times are computed based on the following parameters:
 - $|\vec{V}_{ref}|$: Magnitude of the reference vector
 - $\theta$: Angle of $\vec{V}_{ref}$ within the sector
 
+## ⏱️ Time Calculations for Space Vector PWM (SVPWM)
+
+In Space Vector Pulse Width Modulation, the time durations for active vectors **$\vec{V}_1$**, **$\vec{V}_2$**, and the zero vector are computed as follows for a given sampling period $T_s$:
+
+### 1. Duration of Vector $\vec{V}_1$ (Time $T_1$)
+
+```math
+T_1 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
+```
+
 ### Time Calculations:
 1. **Time $T_1$ (Duration of $\vec{V}_1$)**:
     ```math
@@ -1741,67 +1751,6 @@ For a given scenario where:
 
 You can calculate the vector times using the above formulae.
 
----
-
-### Apply Switching Sequence (In-Depth)
-
-Once the durations $T_1$, $T_2$, and $T_0$ are calculated, the next step is to determine how to **apply these durations to the inverter switches** within a single PWM cycle $T_s$.
-
-#### 🔁 Goal:
-
-To synthesize the reference voltage vector $\vec{V}_{ref}$ as a combination of two adjacent **active voltage vectors** and a **zero vector**, all applied in one switching period $T_s$.
-
-#### ⚡ Switch Timing Strategy
-
-The switching sequence is **symmetrical** for better harmonic performance and to reduce switching losses.
-
-##### ➤ Switching Order:
-
-1. Apply **Zero Vector** for $ \frac{T_0}{2} $  
-2. Apply **Active Vector V1** for $ T_1 $  
-3. Apply **Active Vector V2** for $ T_2 $  
-4. Apply **Zero Vector** again for $ \frac{T_0}{2} $
-
-##### ⏱ Timing Sequence:
-
-```
-|<-----  T_s  ----->|
-| T0/2 | T1 | T2 | T0/2 |
-|-----|----|----|-----|
-```
-
-#### 🧭 Switching Sequence Per Sector
-
-Each of the six sectors has a specific pair of active vectors:
-
-| Sector | Active Vector V1 | Active Vector V2 |
-|--------|------------------|------------------|
-| 1      | V1 (100)         | V2 (110)         |
-| 2      | V2 (110)         | V3 (010)         |
-| 3      | V3 (010)         | V4 (011)         |
-| 4      | V4 (011)         | V5 (001)         |
-| 5      | V5 (001)         | V6 (101)         |
-| 6      | V6 (101)         | V1 (100)         |
-
-> Notation: Vectors (e.g., 100) indicate inverter upper switch ON states for phases A, B, and C.
-
-#### 🔌 Example for Sector 1:
-
-If $ \vec{V}_{ref} $ lies in Sector 1:
-
-- Apply $ \vec{V}_0 = (000) $ or $ (111) $ for $ \frac{T_0}{2} $
-- Apply $ \vec{V}_1 = (100) $ for $ T_1 $
-- Apply $ \vec{V}_2 = (110) $ for $ T_2 $
-- Apply $ \vec{V}_0 $ again for $ \frac{T_0}{2} $
-
-#### 🛠 Controller Implementation Tip
-
-To generate proper phase PWM timings, use the following structure in code (simplified):
-
-```c
-PWM_A = T_z + T_1 + T_2;
-PWM_B = T_z + T_2;
-PWM_C = T_z;
 
 ---
 
