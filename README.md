@@ -1685,9 +1685,9 @@ Use this angle to determine in which of the 6 sectors the vector lies.
 Once the **sector** is known, decompose the reference vector $ \vec{V}_{ref} $ into adjacent vectors $ \vec{V}_1 $, $ \vec{V}_2 $, and the zero vector $ \vec{V}_0 $.
 
 ## 🔧 Given:
-- $ T_s $: PWM period  
-- $ V_{dc} $: DC bus voltage  
-- $ |\vec{V}_{ref}| $: Magnitude of reference vector  
+- $ \T_s $: PWM period  
+- $ \V_{dc} $: DC bus voltage  
+- $ \|\vec{V}_{ref}| $: Magnitude of reference vector  
 - $ \theta $: Angle of $ \vec{V}_{ref} $ **within the sector**  
 
 Compute:
