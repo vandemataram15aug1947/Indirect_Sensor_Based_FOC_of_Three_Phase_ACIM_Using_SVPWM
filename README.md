@@ -1611,12 +1611,171 @@ f_β \\
 - `f₀` is the **zero-sequence component** in the stationary `αβ` reference frame.
 - `f_a`, `f_b`, and `f_c` are the balanced three-phase components in the **`abc` reference frame**.
 
-### 🔲 7. Space Vector PWM (SVPWM)
 
-Generates PWM switching signals from the three-phase voltages to apply to the motor via the inverter.  
-SVPWM:
-- Maximizes bus voltage usage
-- Reduces harmonic distortion
+# 🔲 Space Vector Pulse Width Modulation (SVPWM)
+
+## 📘 Introduction
+
+**Space Vector Pulse Width Modulation (SVPWM)** is a modern PWM technique used in three-phase inverters to efficiently generate AC output voltage. It offers better DC bus utilization and reduced total harmonic distortion (THD) compared to traditional sinusoidal PWM methods.
+
+---
+
+## 🧠 Theory
+
+SVPWM treats the three-phase inverter as a single rotating vector in a two-dimensional α-β plane. The core ideas are:
+
+- Use 6 active and 2 zero voltage vectors  
+- Divide space vector plane into 6 sectors (each 60° wide)  
+- Represent the desired voltage vector \( \vec{V}_{ref} \) using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
+
+---
+
+## 🧮 Step-by-Step Mathematical Explanation
+
+### 1. Clarke Transformation (abc → αβ)
+
+Convert three-phase quantities into 2D orthogonal components:
+
+### Given,
+
+```math
+V_a = V_m \cos(\omega t)
+```
+
+```math
+V_b = V_m \cos(\omega t - 120^\circ)
+```
+
+```math
+V_c = V_m \cos(\omega t + 120^\circ)
+```
+
+Clarke transform gives:
+
+\[
+V_\alpha = V_a
+\]  
+\[
+V_\beta = \frac{1}{\sqrt{3}} (V_b - V_c)
+\]
+
+Then, construct the space vector:
+
+\[
+\vec{V}_{ref} = V_\alpha + j V_\beta
+\]
+
+---
+
+### 2. Determine the Sector
+
+Calculate the angle \( \theta \) of the reference vector:
+
+\[
+\theta = \tan^{-1}\left(\frac{V_\beta}{V_\alpha}\right)
+\]
+
+Use this angle to determine in which of the 6 sectors the vector lies.
+
+---
+
+### 3. Calculate Vector Times (T₁, T₂, T₀)
+
+Once the sector is known, decompose \( \vec{V}_{ref} \) into adjacent vectors \( \vec{V}_1 \), \( \vec{V}_2 \), and zero vector \( \vec{V}_0 \).
+
+Given:
+- \( T_s \): PWM period  
+- \( V_{dc} \): DC bus voltage  
+- \( |\vec{V}_{ref}| \): magnitude of reference vector  
+- \( \theta \): angle of \( \vec{V}_{ref} \) within sector
+
+Compute:
+
+\[
+T_1 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(60^\circ - \theta)
+\]  
+\[
+T_2 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(\theta)
+\]  
+\[
+T_0 = T_s - (T_1 + T_2)
+\]
+
+---
+
+### 4. Apply Switching Sequence (In-Depth)
+
+Once the durations \( T_1 \), \( T_2 \), and \( T_0 \) are calculated, the next step is to determine how to **apply these durations to the inverter switches** within a single PWM cycle \( T_s \).
+
+#### 🔁 Goal:
+
+To synthesize the reference voltage vector \( \vec{V}_{ref} \) as a combination of two adjacent **active voltage vectors** and a **zero vector**, all applied in one switching period \( T_s \).
+
+#### ⚡ Switch Timing Strategy
+
+The switching sequence is **symmetrical** for better harmonic performance and to reduce switching losses.
+
+##### ➤ Switching Order:
+
+1. Apply **Zero Vector** for \( \frac{T_0}{2} \)  
+2. Apply **Active Vector V1** for \( T_1 \)  
+3. Apply **Active Vector V2** for \( T_2 \)  
+4. Apply **Zero Vector** again for \( \frac{T_0}{2} \)
+
+##### ⏱ Timing Sequence:
+
+```
+|<-----  T_s  ----->|
+| T0/2 | T1 | T2 | T0/2 |
+|-----|----|----|-----|
+```
+
+#### 🧭 Switching Sequence Per Sector
+
+Each of the six sectors has a specific pair of active vectors:
+
+| Sector | Active Vector V1 | Active Vector V2 |
+|--------|------------------|------------------|
+| 1      | V1 (100)         | V2 (110)         |
+| 2      | V2 (110)         | V3 (010)         |
+| 3      | V3 (010)         | V4 (011)         |
+| 4      | V4 (011)         | V5 (001)         |
+| 5      | V5 (001)         | V6 (101)         |
+| 6      | V6 (101)         | V1 (100)         |
+
+> Notation: Vectors (e.g., 100) indicate inverter upper switch ON states for phases A, B, and C.
+
+#### 🔌 Example for Sector 1:
+
+If \( \vec{V}_{ref} \) lies in Sector 1:
+
+- Apply \( \vec{V}_0 = (000) \) or \( (111) \) for \( T_0/2 \)
+- Apply \( \vec{V}_1 = (100) \) for \( T_1 \)
+- Apply \( \vec{V}_2 = (110) \) for \( T_2 \)
+- Apply \( \vec{V}_0 \) again for \( T_0/2 \)
+
+#### 🛠 Controller Implementation Tip
+
+To generate proper phase PWM timings, use the following structure in code (simplified):
+
+```c
+PWM_A = T_z + T_1 + T_2;
+PWM_B = T_z + T_2;
+PWM_C = T_z;
+```
+
+Where \( T_z = \frac{T_0}{2} \)
+
+Adjust based on your microcontroller's center-aligned or edge-aligned mode.
+
+#### ✅ Benefits of Symmetric Sequence
+
+- Lower harmonic distortion  
+- Reduced switching losses  
+- Improved voltage balancing  
+
+---
+
 
 ---
 
