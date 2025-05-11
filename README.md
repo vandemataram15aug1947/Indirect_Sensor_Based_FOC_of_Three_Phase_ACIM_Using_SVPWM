@@ -1270,8 +1270,8 @@ The Park transformation is mathematically implemented as follows:
   \end{bmatrix}
   = 
   \begin{bmatrix}
-  \cos(\theta) & -\sin(\theta) \\
-  \sin(\theta) & \cos(\theta)
+  \cos(\theta) & \sin(\theta) \\
+  -\sin(\theta) & \cos(\theta)
   \end{bmatrix}
   \begin{bmatrix}
   f_\alpha \\
@@ -1293,8 +1293,8 @@ The Park transformation is mathematically implemented as follows:
   \end{bmatrix}
   = 
   \begin{bmatrix}
-  \sin(\theta) & \cos(\theta) \\
-  -\cos(\theta) & \sin(\theta)
+  \sin(\theta) & -\cos(\theta) \\
+  \cos(\theta) & \sin(\theta)
   \end{bmatrix}
   \begin{bmatrix}
   f_\alpha \\
@@ -1309,27 +1309,6 @@ The Park transformation is mathematically implemented as follows:
 
 ---
 
-## Inverse Park Transform Equation (dq → αβ)
-
-```math
-\begin{bmatrix}
-f_\alpha \\
-f_\beta
-\end{bmatrix}
-=
-\begin{bmatrix}
-\cos(\theta) & -\sin(\theta) \\
-\sin(\theta) & \cos(\theta)
-\end{bmatrix}
-\begin{bmatrix}
-f_d \\
-f_q
-\end{bmatrix}
- ```
-
-The inverse Park transform is used to generate voltage or current reference signals before transforming them back to the three-phase `abc` system.
-
----
 
 ### 🎯 Speed PI Controller
 
