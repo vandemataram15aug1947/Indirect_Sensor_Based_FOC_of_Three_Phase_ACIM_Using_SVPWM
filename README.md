@@ -1306,7 +1306,6 @@ The Park transformation is mathematically implemented as follows:
 
 ---
 
-
 ### 🎯 Speed PI Controller
 
 The **Speed PI Controller** compares the actual rotor speed ($\omega$) with the reference speed ($\omega_{\text{ref}}$). The speed error ($e_\omega$) is calculated as:
@@ -1315,18 +1314,18 @@ The **Speed PI Controller** compares the actual rotor speed ($\omega$) with the 
 e_\omega = \omega_{\text{ref}} - \omega
 ```
 
-This error is fed into a **Proportional-Integral (PI) controller** to produce the desired torque current \( i_q^* \), which is used to control the motor's torque production. The control law for \( i_q^* \) is given by:
+This error is fed into a **Proportional-Integral (PI) controller** to generate the desired torque-producing current $i_q^*$, which controls the motor’s torque output. The control law for $i_q^*$ is given by:
 
 ```math
 i_q^* = K_p^\omega \cdot e_\omega + K_i^\omega \cdot \int e_\omega \, dt
 ```
 
 ### Where,
-- \( K_p^\omega \) is the **proportional gain**.
-- \( K_i^\omega \) is the **integral gain**.
-- \( \int e_\omega \, dt \) is the integral of the speed error over time, which helps eliminate steady-state error.
+- $K_p^\omega$ is the **proportional gain**.
+- $K_i^\omega$ is the **integral gain**.
+- $\int e_\omega \, dt$ is the **integral of the speed error over time**, which helps eliminate steady-state error.
 
-The **Proportional** term \( K_p^\omega \) reacts to the current speed error, while the **Integral** term \( K_i^\omega \) ensures that the steady-state error is driven to zero, leading to precise speed regulation over time.
+The **Proportional** term $K_p^\omega$ reacts to the current speed error, while the **Integral** term $K_i^\omega$ ensures that the steady-state error is driven to zero, leading to precise speed regulation over time.
 
 ---
 
