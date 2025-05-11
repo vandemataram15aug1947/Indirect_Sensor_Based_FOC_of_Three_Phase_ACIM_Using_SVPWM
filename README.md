@@ -1682,7 +1682,6 @@ Use this angle to determine in which of the 6 sectors the vector lies.
 
 # SVPWM Vector Times Calculation
 
-## Overview
 This project calculates the vector times $T_1$, $T_2$, and $T_0$ for Space Vector Pulse Width Modulation (SVPWM). The SVPWM technique is used to control three-phase inverters and optimize the output voltage to drive the motor effectively. The calculation of the vector times is based on decomposing the reference vector $\vec{V}_{ref}$ into adjacent vectors $\vec{V}_1$, $\vec{V}_2$, and the zero vector $\vec{V}_0$.
 
 ## Formulae for Calculation
@@ -1709,7 +1708,8 @@ T_1 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin\left(\frac{\pi}
 T_2 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin(\theta)
 ```
 
-3. **Time $T_0$ (Zero vector time)**:
+### Duration of Vector $T_0$ (Zero vector time):
+
     ```math
     T_0 = T_s - T_1 - T_2
     ```
@@ -1750,9 +1750,9 @@ You can calculate the vector times using the above formulae.
 ---
 
 
-## Code Explanation
+# Code Explanation
 
-### Include Required Header Files
+## Include Required Header Files
 
 ```c
 #include "stdint.h"         /* Standard integer types */
@@ -1794,7 +1794,7 @@ Here is a list of the headers used in this project and their specific functional
 
 ### Code Implementation
 
-#### Global Variables
+### Global Variables
 ```c
 /* Global Variables */
 float i_alpha, i_beta;      /* Alpha-beta current components */
@@ -1808,7 +1808,7 @@ float i_d_ref = 0.0f;       /* d-axis current reference */
 float i_q_ref = 2.0f;       /* q-axis current reference */
 ```
 
-#### Encoder Read (Position Feedback)
+### Encoder Read (Position Feedback)
 ```c
 /* Encoder Read Function */
 /* Reads the current rotor position from encoder */
@@ -1817,7 +1817,7 @@ float encoder_read() {
 }
 ```
 
-#### Clarke Transform (ABC to αβ)
+### Clarke Transform (ABC to αβ)
 ```c
 /* Clarke Transform Function */
 /* Converts 3-phase current (i_a, i_b, i_c) to 2-phase orthogonal (i_alpha, i_beta) */
@@ -1827,7 +1827,7 @@ void clarke_transform(float i_a, float i_b, float i_c) {
 }
 ```
 
-#### Park Transform (αβ → dq)
+### Park Transform (αβ → dq)
 ```c
 /* Park Transform Function */
 /* Converts (i_alpha, i_beta) into rotating reference frame components (i_d, i_q) */
@@ -1840,7 +1840,7 @@ void park_transform(float theta) {
 }
 ```
 
-#### Speed PI Controller
+### Speed PI Controller
 ```c
 /* Speed PI Controller */
 /* Implements a basic PI controller for speed regulation */
@@ -1875,7 +1875,7 @@ void current_pi_control() {
 }
 ```
 
-#### Inverse Park Transform (dq → αβ)
+### Inverse Park Transform (dq → αβ)
 ```c
 /* Inverse Park Transform Function */
 /* Converts (v_d, v_q) from rotating to stationary reference frame (v_alpha, v_beta) */
@@ -1888,7 +1888,7 @@ void inverse_park_transform(float theta) {
 }
 ```
 
-#### SVPWM Generation
+### SVPWM Generation
 ```c
 #include "driverlib.h"
 #include "math.h"
@@ -1953,7 +1953,7 @@ void generate_svpwm_pulses(float v_alpha, float v_beta) {
 }
 ```
 
-#### Main Loop
+### Main Loop
 ```c
 /* Main Entry Point */
 int main() {
