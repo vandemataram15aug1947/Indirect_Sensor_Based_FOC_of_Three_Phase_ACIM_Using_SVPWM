@@ -1697,22 +1697,17 @@ The vector times are computed based on the following parameters:
 
 In Space Vector Pulse Width Modulation, the time durations for active vectors **$\vec{V}_1$**, **$\vec{V}_2$**, and the zero vector are computed as follows for a given sampling period $T_s$:
 
-### 1. Duration of Vector $\vec{V}_1$ (Time $T_1$)
+### Duration of Vector $\vec{V}_1$ (Time $T_1$)
 
 ```math
 T_1 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
 ```
 
-### Time Calculations:
-1. **Time $T_1$ (Duration of $\vec{V}_1$)**:
-    ```math
-    T_1 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin(\theta)
-    ```
+### Duration of Vector $\vec{V}_2$ (Time $T_2$)
 
-2. **Time $T_2$ (Duration of $\vec{V}_2$)**:
-    ```math
-    T_2 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
-    ```
+```math
+T_2 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin(\theta)
+```
 
 3. **Time $T_0$ (Zero vector time)**:
     ```math
