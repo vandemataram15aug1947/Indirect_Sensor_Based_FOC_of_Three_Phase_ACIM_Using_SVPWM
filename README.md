@@ -1113,7 +1113,7 @@ For example, the block accepts either `a` and `b` input values or the multiplexe
 
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/64b8573f64bbaab2b215a50492f673aace25fb89/Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="500">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/64b8573f64bbaab2b215a50492f673aace25fb89/Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="550">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1215,7 +1215,7 @@ The d-axis aligns with the α-axis.
 * The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20in%20an%20AlphaBeta%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20in%20an%20AlphaBeta%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1224,14 +1224,14 @@ The d-axis aligns with the α-axis.
 * The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20a%20Rotating%20DQ%20Reference%20Frame.png" width="600">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20a%20Rotating%20DQ%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
 
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20%20and%20DQ%20Reference%20Frames.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20%20and%20DQ%20Reference%20Frames.png" width="550">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1474,7 +1474,7 @@ The d-axis aligns with the α-axis.
 * The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/A%20Rotating%20DQ%20Reference%20Frame%20%20in%20an%20AlphaBeta%20reference%20frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/A%20Rotating%20DQ%20Reference%20Frame%20%20in%20an%20AlphaBeta%20reference%20frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1483,14 +1483,14 @@ The d-axis aligns with the α-axis.
 * The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20in%20an%20AlphaBeta%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20in%20an%20AlphaBeta%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
 
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="550">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1589,7 +1589,7 @@ The d-axis aligns with the α-axis.
 * The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Alpha%20and%20Beta%20Input%20Components%20in%20the%20AlphaBeta%20%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Alpha%20and%20Beta%20Input%20Components%20in%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1598,14 +1598,14 @@ The d-axis aligns with the α-axis.
 * The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Equivalent%20A%2C%20B%2C%20and%20C%20Components%20in%20the%20ABC%20Reference%20Frame%20and%20the%20AlphaBeta%20%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Equivalent%20A%2C%20B%2C%20and%20C%20Components%20in%20the%20ABC%20Reference%20Frame%20and%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
 
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20AlphaBeta%20%20and%20ABC%20systems.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20AlphaBeta%20%20and%20ABC%20systems.png" width="550">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
