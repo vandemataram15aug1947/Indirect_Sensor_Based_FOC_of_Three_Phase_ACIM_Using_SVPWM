@@ -1484,7 +1484,7 @@ The figures show the time-response of the individual components of the `αβ` an
 * The `q`-axis aligns with the `α`-axis.
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="550">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/3fec55d18bbd49a4fadcc077230cd2b6980892a4/Inverse%20Park%20Transformation/The%20Q-Axis%20Aligns%20with%20the%20Alpha-Axis..png" width="550">
 </p>  
 
 <p align="center"><b>Figure 15:</b> The Q-Axis Aligns with the Alpha-Axis</p>  
@@ -1537,65 +1537,56 @@ This is the forward Park Transform, typically applied before control logic.
 
 ### Where,
 
-- `fₐ`, `f_b`, `f_c` are the balanced three-phase components in the **abc reference frame** (natural frame).
-- `f_α`, `f_β` are the balanced two-phase orthogonal components in the **stationary αβ reference frame** (obtained using Clarke transformation).
-- `f₀` is the **zero-sequence component** in the stationary αβ reference frame, representing any unbalance in the three-phase system.
-- `f_d`, `f_q` are the direct and quadrature-axis components in the **rotating dq reference frame** (obtained using Park transformation).
-- `θ` is the **electrical angle** between the α-axis and the d-axis in the rotating dq frame.
+- `f_α` and `f_β` are the two-phase orthogonal components in the stationary `αβ` reference frame.
+- `f_d`, `f_q` a are the direct and quadrature axis orthogonal components in the rotating `dq` reference frame.
+- `θ` is the **electrical angle** between the `α`-axis and the `d`-axis in the rotating `dq` frame.
 
 ---
 
-### 🔄 6. Inverse Clarke Transformation (αβ → ABC)
-
-# Inverse Clarke Transform
+# 🧮 Inverse Clarke Transformation (αβ → ABC)
 
 ## Description
 
-Description
-The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary αβ reference frame and outputs the balanced, three-phase components in the stationary abc reference frame. Alternatively, the block can compute Inverse Clarke transformation of the components α, β, and 0 to output the three-phase components a, b, and c. For a balanced system, the zero component is equal to zero. Use the Number of inputs parameter to use either two or three inputs.
+The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary αβ reference frame and outputs the balanced, three-phase components in the stationary abc reference frame. 
+
+Alternatively, the block can compute Inverse Clarke transformation of the components α, β, and 0 to output the three-phase components a, b, and c. 
+
+For a balanced system, the zero component is equal to zero. 
+
+Use the **Number of inputs** parameter to use either two or three inputs.
 
 The block accepts the α-β axis components as inputs and outputs the corresponding three-phase signals, where the phase-a axis aligns with the α-axis.
 
-The α and β input components in the αβ reference frame.
-
-
-The d-axis aligns with the α-axis.
-
-* The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
+* The α and β input components in the αβ reference frame.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Alpha%20and%20Beta%20Input%20Components%20in%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 16:</b> The Alpha and Beta Input Components in the AlphaBeta  Reference Frame</p>  
 
 
-* The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
+* The direction of the equivalent a, b, and c output components in the abc reference frame and the αβ reference frame.
 
  <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Equivalent%20A%2C%20B%2C%20and%20C%20Components%20in%20the%20ABC%20Reference%20Frame%20and%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 17:</b> The Equivalent A, B, and C Components in the ABC Reference Frame and the AlphaBeta  Reference Frame</p>  
 
+The time-response of the individual components of equivalent balanced αβ and abc systems.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20AlphaBeta%20%20and%20ABC%20systems.png" width="550">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
-
-The direction of the equivalent a, b, and c output components in the abc reference frame and the αβ reference frame.
-
-
-
-The time-response of the individual components of equivalent balanced αβ and abc systems.
+<p align="center"><b>Figure 18:</b> The Time-Response of the Individual Components of Equivalent Balanced AlphaBeta  and ABC systems</p>  
 
 ---
 
-## Inverse Clarke Transform Equation (αβ → abc)
+## Equations (αβ → abc)
 
-For a balanced three-phase system (no zero-sequence component):
+The following equation describes the Inverse Clarke transform computation:
 
 ```math
 \begin{bmatrix}
