@@ -1695,19 +1695,19 @@ The vector times are computed based on the following parameters:
 
 ### Time Calculations:
 1. **Time $T_1$ (Duration of $\vec{V}_1$)**:
-    $$
+    ```math
     T_1 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin(\theta)
-    $$
+    ```
 
 2. **Time $T_2$ (Duration of $\vec{V}_2$)**:
-    $$
+    ```math
     T_2 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
-    $$
+    ```
 
 3. **Time $T_0$ (Zero vector time)**:
-    $$
+    ```math
     T_0 = T_s - T_1 - T_2
-    $$
+    ```
 
 ### Explanation:
 - $T_1$: The time duration for the adjacent vector $\vec{V}_1$.
