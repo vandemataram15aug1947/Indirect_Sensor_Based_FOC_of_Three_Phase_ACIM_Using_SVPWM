@@ -1632,7 +1632,7 @@ SVPWM treats the three-phase inverter output as a single rotating vector in a tw
 
 ## 🧮 Step-by-Step Mathematical Explanation
 
-### 1. Clarke Transformation (abc → αβ)
+### Clarke Transformation (abc → αβ)
 
 Convert three-phase quantities into 2D orthogonal components:
 
@@ -1668,49 +1668,51 @@ Then, construct the space vector:
 
 ---
 
-### 2. Determine the Sector
+### Determine the Sector
 
 Calculate the angle \( \theta \) of the reference vector:
 
-\[
+```math
 \theta = \tan^{-1}\left(\frac{V_\beta}{V_\alpha}\right)
-\]
+```
 
 Use this angle to determine in which of the 6 sectors the vector lies.
 
 ---
 
-### 3. Calculate Vector Times (T₁, T₂, T₀)
+### Calculate Vector Times (T₁, T₂, T₀)
 
-Once the sector is known, decompose \( \vec{V}_{ref} \) into adjacent vectors \( \vec{V}_1 \), \( \vec{V}_2 \), and zero vector \( \vec{V}_0 \).
+Once the **sector** is known, decompose the reference vector $ \vec{V}_{ref} $ into adjacent vectors $ \vec{V}_1 $, $ \vec{V}_2 $, and the zero vector $ \vec{V}_0 $.
 
-Given:
-- \( T_s \): PWM period  
-- \( V_{dc} \): DC bus voltage  
-- \( |\vec{V}_{ref}| \): magnitude of reference vector  
-- \( \theta \): angle of \( \vec{V}_{ref} \) within sector
+## 🔧 Given:
+- $ T_s $: PWM period  
+- $ V_{dc} $: DC bus voltage  
+- $ |\vec{V}_{ref}| $: Magnitude of reference vector  
+- $ \theta $: Angle of $ \vec{V}_{ref} $ **within the sector**  
 
 Compute:
 
-\[
+```math
 T_1 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(60^\circ - \theta)
-\]  
-\[
+```
+ 
+```math
 T_2 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(\theta)
-\]  
-\[
+```
+
+```math
 T_0 = T_s - (T_1 + T_2)
-\]
+```
 
 ---
 
-### 4. Apply Switching Sequence (In-Depth)
+### Apply Switching Sequence (In-Depth)
 
-Once the durations \( T_1 \), \( T_2 \), and \( T_0 \) are calculated, the next step is to determine how to **apply these durations to the inverter switches** within a single PWM cycle \( T_s \).
+Once the durations $T_1$, $T_2$, and $T_0$ are calculated, the next step is to determine how to **apply these durations to the inverter switches** within a single PWM cycle $T_s$.
 
 #### 🔁 Goal:
 
-To synthesize the reference voltage vector \( \vec{V}_{ref} \) as a combination of two adjacent **active voltage vectors** and a **zero vector**, all applied in one switching period \( T_s \).
+To synthesize the reference voltage vector $\vec{V}_{ref}$ as a combination of two adjacent **active voltage vectors** and a **zero vector**, all applied in one switching period $T_s$.
 
 #### ⚡ Switch Timing Strategy
 
@@ -1718,10 +1720,10 @@ The switching sequence is **symmetrical** for better harmonic performance and to
 
 ##### ➤ Switching Order:
 
-1. Apply **Zero Vector** for \( \frac{T_0}{2} \)  
-2. Apply **Active Vector V1** for \( T_1 \)  
-3. Apply **Active Vector V2** for \( T_2 \)  
-4. Apply **Zero Vector** again for \( \frac{T_0}{2} \)
+1. Apply **Zero Vector** for $ \frac{T_0}{2} $  
+2. Apply **Active Vector V1** for $ T_1 $  
+3. Apply **Active Vector V2** for $ T_2 $  
+4. Apply **Zero Vector** again for $ \frac{T_0}{2} $
 
 ##### ⏱ Timing Sequence:
 
@@ -1748,12 +1750,12 @@ Each of the six sectors has a specific pair of active vectors:
 
 #### 🔌 Example for Sector 1:
 
-If \( \vec{V}_{ref} \) lies in Sector 1:
+If $ \vec{V}_{ref} $ lies in Sector 1:
 
-- Apply \( \vec{V}_0 = (000) \) or \( (111) \) for \( T_0/2 \)
-- Apply \( \vec{V}_1 = (100) \) for \( T_1 \)
-- Apply \( \vec{V}_2 = (110) \) for \( T_2 \)
-- Apply \( \vec{V}_0 \) again for \( T_0/2 \)
+- Apply $ \vec{V}_0 = (000) $ or $ (111) $ for $ \frac{T_0}{2} $
+- Apply $ \vec{V}_1 = (100) $ for $ T_1 $
+- Apply $ \vec{V}_2 = (110) $ for $ T_2 $
+- Apply $ \vec{V}_0 $ again for $ \frac{T_0}{2} $
 
 #### 🛠 Controller Implementation Tip
 
@@ -1763,20 +1765,6 @@ To generate proper phase PWM timings, use the following structure in code (simpl
 PWM_A = T_z + T_1 + T_2;
 PWM_B = T_z + T_2;
 PWM_C = T_z;
-```
-
-Where \( T_z = \frac{T_0}{2} \)
-
-Adjust based on your microcontroller's center-aligned or edge-aligned mode.
-
-#### ✅ Benefits of Symmetric Sequence
-
-- Lower harmonic distortion  
-- Reduced switching losses  
-- Improved voltage balancing  
-
----
-
 
 ---
 
