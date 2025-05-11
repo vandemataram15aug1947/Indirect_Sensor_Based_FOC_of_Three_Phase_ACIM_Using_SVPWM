@@ -1616,17 +1616,17 @@ f_β \\
 
 ## 📘 Introduction
 
-**Space Vector Pulse Width Modulation (SVPWM)** is a modern PWM technique used in three-phase inverters to efficiently generate AC output voltage. It offers better DC bus utilization and reduced total harmonic distortion (THD) compared to traditional sinusoidal PWM methods.
+Space Vector Pulse Width Modulation (SVPWM) is an advanced PWM technique used to control three-phase inverters more efficiently than traditional sinusoidal PWM. By treating the inverter as a single unit, SVPWM synthesizes the desired output voltage vector through a combination of switching states. This approach improves DC bus utilization, reduces total harmonic distortion (THD), and enhances overall system efficiency.
 
 ---
 
 ## 🧠 Theory
 
-SVPWM treats the three-phase inverter as a single rotating vector in a two-dimensional α-β plane. The core ideas are:
+SVPWM treats the three-phase inverter output as a single rotating vector in a two-dimensional α-β plane (also called the Clarke transformation plane). Instead of controlling three separate phase voltages directly, SVPWM computes an equivalent voltage vector $ \vec{V}_{ref} $ that represents the desired three-phase voltages at that moment in time.
 
 - Use 6 active and 2 zero voltage vectors  
 - Divide space vector plane into 6 sectors (each 60° wide)  
-- Represent the desired voltage vector \( \vec{V}_{ref} \) using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
+- Represent the desired voltage vector  $ \vec{V}_{ref} $ using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
 
 ---
 
