@@ -1680,29 +1680,66 @@ Use this angle to determine in which of the 6 sectors the vector lies.
 
 ---
 
-### Calculate Vector Times (T₁, T₂, T₀)
+# SVPWM Vector Times Calculation
 
-Once the **sector** is known, decompose the reference vector $ \vec{V}_{ref} $ into adjacent vectors $ \vec{V}_1 $, $ \vec{V}_2 $, and the zero vector $ \vec{V}_0 $.
+## Overview
+This project calculates the vector times $T_1$, $T_2$, and $T_0$ for Space Vector Pulse Width Modulation (SVPWM). The SVPWM technique is used to control three-phase inverters and optimize the output voltage to drive the motor effectively. The calculation of the vector times is based on decomposing the reference vector $\vec{V}_{ref}$ into adjacent vectors $\vec{V}_1$, $\vec{V}_2$, and the zero vector $\vec{V}_0$.
 
-## 🔧 Given:
-- $ \T_s $: PWM period  
-- $ \V_{dc} $: DC bus voltage  
-- $ \|\vec{V}_{ref}| $: Magnitude of reference vector  
-- $ \theta $: Angle of $ \vec{V}_{ref} $ **within the sector**  
+## Formulae for Calculation
 
-Compute:
+The vector times are computed based on the following parameters:
+- $T_s$: PWM period
+- $V_{dc}$: DC bus voltage
+- $|\vec{V}_{ref}|$: Magnitude of the reference vector
+- $\theta$: Angle of $\vec{V}_{ref}$ within the sector
 
-```math
-T_1 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(60^\circ - \theta)
-```
- 
-```math
-T_2 = \frac{T_s \cdot |\vec{V}_{ref}|}{V_{dc}} \cdot \sin(\theta)
-```
+### Time Calculations:
+1. **Time $T_1$ (Duration of $\vec{V}_1$)**:
+    $$
+    T_1 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin(\theta)
+    $$
 
-```math
-T_0 = T_s - (T_1 + T_2)
-```
+2. **Time $T_2$ (Duration of $\vec{V}_2$)**:
+    $$
+    T_2 = \frac{V_{dc}}{2 |\vec{V}_{ref}|} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
+    $$
+
+3. **Time $T_0$ (Zero vector time)**:
+    $$
+    T_0 = T_s - T_1 - T_2
+    $$
+
+### Explanation:
+- $T_1$: The time duration for the adjacent vector $\vec{V}_1$.
+- $T_2$: The time duration for the adjacent vector $\vec{V}_2$.
+- $T_0$: The time for the zero vector $\vec{V}_0$, which is used for symmetry.
+
+### Sector Consideration:
+- The reference vector $\vec{V}_{ref}$ lies in one of the six sectors of the hexagonal voltage space.
+- The angle $\theta$ represents the position of the reference vector within a specific sector. This angle is used to calculate the respective vector times.
+
+### How to Use:
+1. **Input Parameters**:
+    - Define the PWM period $T_s$.
+    - Set the DC bus voltage $V_{dc}$.
+    - Input the magnitude $|\vec{V}_{ref}|$ of the reference vector.
+    - Input the angle $\theta$ of the reference vector in the specific sector.
+
+2. **Calculation**:
+    - Use the above formulae to compute the values of $T_1$, $T_2$, and $T_0$.
+
+3. **Output**:
+    - The calculated times $T_1$, $T_2$, and $T_0$ can be used in generating PWM signals to control the inverter or motor drive.
+
+## Example:
+
+For a given scenario where:
+- $V_{dc} = 400 \, \text{V}$
+- $|\vec{V}_{ref}| = 230 \, \text{V}$
+- $\theta = 30^\circ$ (in radians: $\theta = \pi / 6$)
+- $T_s = 20 \, \mu s$
+
+You can calculate the vector times using the above formulae.
 
 ---
 
