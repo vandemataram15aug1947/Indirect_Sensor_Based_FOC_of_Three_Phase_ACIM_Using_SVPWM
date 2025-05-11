@@ -1069,42 +1069,6 @@ This logic ensures safe and efficient motor operation in both base and field wea
 
 -->
 
-## Code Explanation
-
-### Include Required Header Files
-
-```c
-#include "stdint.h"         /* Standard integer types */
-#include "math.h"           /* Standard math library */
-#include "IQmathLib.h"      /* TI's fixed-point math library */
-
-#include "device.h"         /* Device-specific configuration */
-#include "ADC.h"            /* ADC configuration and data handling */
-#include "eQEP.h"           /* Quadrature encoder interface */
-
-#include "CLARKE.h"         /* Clarke transformation (abc → αβ) */
-#include "PARK.h"           /* Park transformation (αβ → dq) */
-#include "iPARK.h"          /* Inverse Park transformation (dq → αβ) */
-#include "iCLARKE.h"        /* Inverse Clarke transformation (αβ → abc) */
-#include "SVPWM.h"          /* Space Vector PWM generation */
-```
-
-## Headers and Functionality
-
-Here is a list of the headers used in this project and their specific functionality:
-
-- **`"stdint.h"`**: Standard integer types (such as `int32_t`, `uint16_t`) for improved portability across platforms.
-- **`"math.h"`**: Standard math library providing functions like `sin()`, `cos()`, and `atan2()` for performing trigonometric calculations.
-- **`"IQmathLib.h"`**: TI's fixed-point math library, enabling efficient fixed-point mathematical operations.
-- **`"device.h"`**: Device-specific configuration, such as microcontroller settings, peripheral initialization, and clock configuration.
-- **`"ADC.h"`**: ADC driver functions for configuring and handling Analog-to-Digital Conversion (ADC) to acquire motor currents and rotor speed.
-- **`"eQEP.h"`**: Quadrature Encoder Pulse (eQEP) interface, used for acquiring encoder data to monitor rotor position and speed.
-- **`"CLARKE.h"`**: Clarke transformation (abc → αβ), used to convert a 3-phase system to a 2-phase system in motor control.
-- **`"PARK.h"`**: Park transformation (αβ → dq), which is used to convert the αβ frame to the dq frame for motor control, aligned with the rotor.
-- **`"PI.h"`**: Contains the implementation of Proportional-Integral (PI) controllers, which are used for feedback control in motor control systems. The PI controller calculates the error between the reference and measured values (e.g., motor speed or position), and adjusts the control signal to minimize this error, ensuring stable motor operation.
-- **`"iPARK.h"`**: Inverse Park transformation (dq → αβ), which converts the dq frame back to the αβ frame.
-- **`"iCLARKE.h"`**: Inverse Clarke transformation (αβ → abc), which converts the 2-phase system back to the 3-phase system for motor drive.
-- **`"SVPWM.h"`**: Space Vector Pulse Width Modulation (SVPWM) generation, used to control motor voltage using space vector modulation techniques.
 
 # 💡 Field-Oriented Control (FOC) – Theory and Implementation
 
@@ -1148,8 +1112,8 @@ For example, the block accepts either `a` and `b` input values or the multiplexe
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
 
 
-<p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/9a5dc663665fb4e69fff79570d258ed58f25713f/Clarke%20Transformation/The%20Time Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="300">
+ <p align="center">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/64b8573f64bbaab2b215a50492f673aace25fb89/Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20ABC%20and%20AlphaBeta%20Systems.png" width="300">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1260,7 +1224,7 @@ The d-axis aligns with the α-axis.
 * The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
 
  <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20a%20Rotating%20DQ%20Reference%20Frame.png" width="300">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Park%20Transformation/The%20Alpha-Beta%20Axes%20Components%20a%20Rotating%20DQ%20Reference%20Frame.png" width="600">
 </p>  
 
 <p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
@@ -1743,8 +1707,48 @@ SVPWM:
 
 ---
 
-## 🔁 FOC Control Loop Summary
 
+## Code Explanation
+
+### Include Required Header Files
+
+```c
+#include "stdint.h"         /* Standard integer types */
+#include "math.h"           /* Standard math library */
+#include "IQmathLib.h"      /* TI's fixed-point math library */
+
+#include "device.h"         /* Device-specific configuration */
+#include "ADC.h"            /* ADC configuration and data handling */
+#include "eQEP.h"           /* Quadrature encoder interface */
+
+#include "CLARKE.h"         /* Clarke transformation (abc → αβ) */
+#include "PARK.h"           /* Park transformation (αβ → dq) */
+#include "iPARK.h"          /* Inverse Park transformation (dq → αβ) */
+#include "iCLARKE.h"        /* Inverse Clarke transformation (αβ → abc) */
+#include "SVPWM.h"          /* Space Vector PWM generation */
+```
+
+## Headers and Functionality
+
+Here is a list of the headers used in this project and their specific functionality:
+
+- **`"stdint.h"`**: Standard integer types (such as `int32_t`, `uint16_t`) for improved portability across platforms.
+- **`"math.h"`**: Standard math library providing functions like `sin()`, `cos()`, and `atan2()` for performing trigonometric calculations.
+- **`"IQmathLib.h"`**: TI's fixed-point math library, enabling efficient fixed-point mathematical operations.
+- **`"device.h"`**: Device-specific configuration, such as microcontroller settings, peripheral initialization, and clock configuration.
+- **`"ADC.h"`**: ADC driver functions for configuring and handling Analog-to-Digital Conversion (ADC) to acquire motor currents and rotor speed.
+- **`"eQEP.h"`**: Quadrature Encoder Pulse (eQEP) interface, used for acquiring encoder data to monitor rotor position and speed.
+- **`"CLARKE.h"`**: Clarke transformation (abc → αβ), used to convert a 3-phase system to a 2-phase system in motor control.
+- **`"PARK.h"`**: Park transformation (αβ → dq), which is used to convert the αβ frame to the dq frame for motor control, aligned with the rotor.
+- **`"PI.h"`**: Contains the implementation of Proportional-Integral (PI) controllers, which are used for feedback control in motor control systems. The PI controller calculates the error between the reference and measured values (e.g., motor speed or position), and adjusts the control signal to minimize this error, ensuring stable motor operation.
+- **`"iPARK.h"`**: Inverse Park transformation (dq → αβ), which converts the dq frame back to the αβ frame.
+- **`"iCLARKE.h"`**: Inverse Clarke transformation (αβ → abc), which converts the 2-phase system back to the 3-phase system for motor drive.
+- **`"SVPWM.h"`**: Space Vector Pulse Width Modulation (SVPWM) generation, used to control motor voltage using space vector modulation techniques.
+
+---
+
+
+## 🔁 FOC Control Loop Summary
 
 ### Code Implementation
 
