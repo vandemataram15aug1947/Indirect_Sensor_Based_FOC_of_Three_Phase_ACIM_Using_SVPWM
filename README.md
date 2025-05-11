@@ -1622,11 +1622,11 @@ Space Vector Pulse Width Modulation (SVPWM) is an advanced PWM technique used to
 
 ## 🧠 Theory
 
-SVPWM treats the three-phase inverter output as a single rotating vector in a two-dimensional α-β plane (also called the Clarke transformation plane). Instead of controlling three separate phase voltages directly, SVPWM computes an equivalent voltage vector $ \vec{V}_{ref} $ that represents the desired three-phase voltages at that moment in time.
+SVPWM treats the three-phase inverter output as a single rotating vector in a two-dimensional α-β plane (also called the Clarke transformation plane). Instead of controlling three separate phase voltages directly, SVPWM computes an equivalent voltage vector `Vref` that represents the desired three-phase voltages at that moment in time.
 
 - Use 6 active and 2 zero voltage vectors  
 - Divide space vector plane into 6 sectors (each 60° wide)  
-- Represent the desired voltage vector  $ \vec{V}_{ref} $ using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
+- Represent the desired voltage vector `Vref` using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
 
 ---
 
@@ -1652,18 +1652,19 @@ V_c = V_m \cos(\omega t + 120^\circ)
 
 Clarke transform gives:
 
-\[
+```math
 V_\alpha = V_a
-\]  
-\[
+```
+
+```math
 V_\beta = \frac{1}{\sqrt{3}} (V_b - V_c)
-\]
+```
 
 Then, construct the space vector:
 
-\[
+```math
 \vec{V}_{ref} = V_\alpha + j V_\beta
-\]
+```
 
 ---
 
