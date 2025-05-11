@@ -1547,17 +1547,17 @@ This is the forward Park Transform, typically applied before control logic.
 
 ## Description
 
-The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary αβ reference frame and outputs the balanced, three-phase components in the stationary abc reference frame. 
+The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary `αβ` reference frame and outputs the balanced, three-phase components in the stationary `abc` reference frame. 
 
-Alternatively, the block can compute Inverse Clarke transformation of the components α, β, and 0 to output the three-phase components a, b, and c. 
+Alternatively, the block can compute Inverse Clarke transformation of the components `α, β`, and `0` to output the three-phase components `a, b`, and `c`. 
 
 For a balanced system, the zero component is equal to zero. 
 
 Use the **Number of inputs** parameter to use either two or three inputs.
 
-The block accepts the α-β axis components as inputs and outputs the corresponding three-phase signals, where the phase-a axis aligns with the α-axis.
+The block accepts the `α-β` axis components as inputs and outputs the corresponding three-phase signals, where the phase-`a` axis aligns with the `α`-axis.
 
-* The α and β input components in the αβ reference frame.
+* The `α` and `β` input components in the `αβ` reference frame.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Alpha%20and%20Beta%20Input%20Components%20in%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
@@ -1566,7 +1566,7 @@ The block accepts the α-β axis components as inputs and outputs the correspond
 <p align="center"><b>Figure 16:</b> The Alpha and Beta Input Components in the AlphaBeta  Reference Frame</p>  
 
 
-* The direction of the equivalent a, b, and c output components in the abc reference frame and the αβ reference frame.
+* The direction of the equivalent `a, b`, and `c` output components in the `abc` reference frame and the `αβ` reference frame.
 
  <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Equivalent%20A%2C%20B%2C%20and%20C%20Components%20in%20the%20ABC%20Reference%20Frame%20and%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
@@ -1574,7 +1574,7 @@ The block accepts the α-β axis components as inputs and outputs the correspond
 
 <p align="center"><b>Figure 17:</b> The Equivalent A, B, and C Components in the ABC Reference Frame and the AlphaBeta  Reference Frame</p>  
 
-The time-response of the individual components of equivalent balanced αβ and abc systems.
+The time-response of the individual components of equivalent balanced `αβ` and `abc` systems.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20AlphaBeta%20%20and%20ABC%20systems.png" width="550">
@@ -1641,9 +1641,9 @@ f_β \\
 
 ### Where,
 
-- `f_α` and `f_β` are the balanced two-phase orthogonal components in the **stationary αβ reference frame**.
-- `f₀` is the **zero-sequence component** in the stationary αβ reference frame.
-- `f_a`, `f_b`, and `f_c` are the balanced three-phase components in the **abc reference frame**.
+- `f_α` and `f_β` are the balanced two-phase orthogonal components in the **stationary `αβ` reference frame**.
+- `f₀` is the **zero-sequence component** in the stationary `αβ` reference frame.
+- `f_a`, `f_b`, and `f_c` are the balanced three-phase components in the **`abc` reference frame**.
 
 ### 🔲 7. Space Vector PWM (SVPWM)
 
