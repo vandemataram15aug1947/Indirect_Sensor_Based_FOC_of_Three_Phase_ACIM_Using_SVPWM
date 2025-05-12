@@ -1,8 +1,6 @@
 # Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM
 
-# Indirect Sensor-Based Field-Oriented Control (FOC) for a Three-Phase AC Induction Motor Using Space Vector Pulse Width Modulation (SVPWM)
-
-## 1. Overview
+## Overview
 This project implements Indirect Sensored Field-Oriented Control (FOC) for a Three-Phase AC Induction Motor (ACI). It utilizes a rotor position sensor, Clarke and Park Transforms, Proportional-Integral (PI) Controllers, and Space Vector Pulse Width Modulation (SVPWM) to achieve precise speed and torque control. The goal is to ensure optimal motor performance with reduced harmonic distortion, improved dynamic response, and better efficiency.
 
 ## ⚙️ What Is Field-Oriented Control (FOC)?
@@ -1308,122 +1306,90 @@ The Park transformation is mathematically implemented as follows:
 
 ---
 
-
 ### 🎯 Speed PI Controller
 
-The **Speed PI Controller** compares the actual rotor speed \( \omega \) with the reference speed \( \omega_{\text{ref}} \). The error in speed \( e_\omega \) is calculated as:
+The **Speed PI Controller** compares the actual rotor speed ($\omega$) with the reference speed ($\omega_{\text{ref}}$). The speed error ($e_\omega$) is calculated as:
 
-\[
+```math
 e_\omega = \omega_{\text{ref}} - \omega
-\]
+```
 
-This error is fed into a **Proportional-Integral (PI) controller** to produce the desired torque current \( i_q^* \), which is used to control the motor's torque production. The control law for \( i_q^* \) is given by:
+This error is fed into a **Proportional-Integral (PI) controller** to generate the desired torque-producing current $i_q^*$, which controls the motor’s torque output. The control law for $i_q^*$ is given by:
 
-\[
+```math
 i_q^* = K_p^\omega \cdot e_\omega + K_i^\omega \cdot \int e_\omega \, dt
-\]
+```
 
-Where:
-- \( K_p^\omega \) is the **proportional gain**.
-- \( K_i^\omega \) is the **integral gain**.
-- \( \int e_\omega \, dt \) is the integral of the speed error over time, which helps eliminate steady-state error.
+### Where,
+- $K_p^\omega$ is the **proportional gain**.
+- $K_i^\omega$ is the **integral gain**.
+- $\int e_\omega \, dt$ is the **integral of the speed error over time**, which helps eliminate steady-state error.
 
-The **Proportional** term \( K_p^\omega \) reacts to the current speed error, while the **Integral** term \( K_i^\omega \) ensures that the steady-state error is driven to zero, leading to precise speed regulation over time.
+The **Proportional** term $K_p^\omega$ reacts to the current speed error, while the **Integral** term $K_i^\omega$ ensures that the steady-state error is driven to zero, leading to precise speed regulation over time.
 
 ---
 
 ### 🔁 Current Control PI Loops
 
-The **Current Control PI Loops** are designed to independently control the d-axis and q-axis stator currents, \( i_d \) and \( i_q \), using PI controllers. These currents are essential in motor control because they directly influence the motor's flux and torque.
+The **Current Control PI Loops** are designed to independently control the d-axis and q-axis stator currents ($i_d$ and $i_q$) using PI controllers. These currents are essential in motor control because they directly influence the motor's flux and torque.
 
 #### 📘 Direct-Axis (d-axis) Control
 
-The **d-axis** current \( i_d \) is responsible for controlling the flux in the motor, often linked to the magnetizing current. The error in the d-axis current \( e_d \) is given by:
+The **d-axis** current $i_d$ is responsible for controlling the flux in the motor, often linked to the magnetizing current. The error in the d-axis current $e_d$ is given by:
 
-\[
+```math
 e_d = i_d^* - i_d
-\]
+```
 
-Where:
-- \( i_d^* \) is the reference direct-axis current.
-- \( i_d \) is the actual direct-axis current measured from the motor.
+### Where,
+- $i_d^*$ is the reference direct-axis current.  
+- $i_d$ is the actual direct-axis current measured from the motor.
 
-The PI control law for the d-axis voltage \( v_d \) is:
+The PI control law for the d-axis voltage $v_d$ is:
 
-\[
+```math
 v_d = K_p^d \cdot e_d + K_i^d \cdot \int e_d \, dt
-\]
+```
 
-Where:
-- \( K_p^d \) is the **proportional gain** for the d-axis.
-- \( K_i^d \) is the **integral gain** for the d-axis.
+### Where,
+- $K_p^d$ is the **proportional gain** for the d-axis.  
+- $K_i^d$ is the **integral gain** for the d-axis.
 
 #### 📙 Quadrature-Axis (q-axis) Control
 
-The **q-axis** current \( i_q \) is responsible for controlling the torque in the motor, and the error in the q-axis current \( e_q \) is:
+The **q-axis** current $i_q$ is responsible for controlling the torque in the motor. The error in the q-axis current $e_q$ is:
 
-\[
+```math
 e_q = i_q^* - i_q
-\]
+```
 
-Where:
-- \( i_q^* \) is the reference quadrature-axis current.
-- \( i_q \) is the actual quadrature-axis current measured from the motor.
+### Where,
+- $i_q^*$ is the reference quadrature-axis current.  
+- $i_q$ is the actual quadrature-axis current measured from the motor.
 
-The PI control law for the q-axis voltage \( v_q \) is:
+The PI control law for the q-axis voltage $v_q$ is:
 
-\[
+```math
 v_q = K_p^q \cdot e_q + K_i^q \cdot \int e_q \, dt
-\]
+```
 
-Where:
-- \( K_p^q \) is the **proportional gain** for the q-axis.
-- \( K_i^q \) is the **integral gain** for the q-axis.
+### Where,
+- $K_p^q$ is the **proportional gain** for the q-axis.  
+- $K_i^q$ is the **integral gain** for the q-axis.
 
 The **Proportional** term for both axes adjusts the voltage based on the current error, while the **Integral** term eliminates steady-state errors by integrating the current error over time.
 
 ---
 
-### Control System Behavior
+### 🧠 Control System Behavior
 
-- The **PI controllers** are used to eliminate steady-state errors and ensure smooth tracking of the reference signals.
-- The **d-axis control** aims to maintain the desired flux, typically set to zero for surface Permanent Magnet Synchronous Motors (PMSM) or adjusted for different motor types.
-- The **q-axis control** directly governs the torque production, where the current \( i_q \) is typically proportional to the torque generated by the motor.
+- The **PI controllers** eliminate steady-state errors and ensure accurate tracking of reference signals.
+- The **d-axis control** maintains the desired flux—typically set to zero for surface PMSMs, or adjusted based on the motor type.
+- The **q-axis control** governs torque production; $i_q$ is typically proportional to the generated torque.
 
 In combination, these controllers allow for the **decoupling** of the flux and torque components of the motor, providing **independent control** of each, which is crucial in **Field-Oriented Control (FOC)**.
 
 ---
-
-## Notation
-
-| Symbol         | Description                                         |
-|----------------|-----------------------------------------------------|
-| \( \omega \)        | Actual rotor speed                              |
-| \( \omega_{\text{ref}} \) | Reference rotor speed                        |
-| \( i_d, i_q \)      | Actual d-axis and q-axis currents               |
-| \( i_d^*, i_q^* \)  | Reference d-axis and q-axis currents             |
-| \( v_d, v_q \)      | Control voltages for d-axis and q-axis           |
-| \( K_p, K_i \)      | Proportional and Integral gains for the controllers |
-| \( e_d, e_q, e_\omega \) | Error terms for d-axis, q-axis, and speed     |
-
----
-
-## Applications
-
-- **Speed regulation** in motors using PI control loops.
-- **Decoupling of flux and torque** components for efficient motor control in FOC.
-- **Torque production** regulation via \( i_q \) and flux control via \( i_d \).
-- **Adaptive motor control** systems that respond to changes in load and speed.
-- **Voltage modulation** (e.g., SVPWM or SPWM) after current control is performed.
-
----
-
-## License
-
-This content is provided for **educational and research purposes**.
-
----
-
 
 # 🧮 Inverse Park Transformation (dq → αβ)
 
@@ -1484,7 +1450,7 @@ The figures show the time-response of the individual components of the `αβ` an
 * The `q`-axis aligns with the `α`-axis.
 
 <p align="center">
-  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Park%20Transformation/Time-Response%20of%20the%20Individual%20Components%20of%20the%20AlphaBeta%20and%20DQ%20Reference%20Frames.png" width="550">
+  <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/3fec55d18bbd49a4fadcc077230cd2b6980892a4/Inverse%20Park%20Transformation/The%20Q-Axis%20Aligns%20with%20the%20Alpha-Axis..png" width="550">
 </p>  
 
 <p align="center"><b>Figure 15:</b> The Q-Axis Aligns with the Alpha-Axis</p>  
@@ -1537,155 +1503,256 @@ This is the forward Park Transform, typically applied before control logic.
 
 ### Where,
 
-- `fₐ`, `f_b`, `f_c` are the balanced three-phase components in the **abc reference frame** (natural frame).
-- `f_α`, `f_β` are the balanced two-phase orthogonal components in the **stationary αβ reference frame** (obtained using Clarke transformation).
-- `f₀` is the **zero-sequence component** in the stationary αβ reference frame, representing any unbalance in the three-phase system.
-- `f_d`, `f_q` are the direct and quadrature-axis components in the **rotating dq reference frame** (obtained using Park transformation).
-- `θ` is the **electrical angle** between the α-axis and the d-axis in the rotating dq frame.
+- `f_α` and `f_β` are the two-phase orthogonal components in the stationary `αβ` reference frame.
+- `f_d`, `f_q` a are the direct and quadrature axis orthogonal components in the rotating `dq` reference frame.
+- `θ` is the **electrical angle** between the `α`-axis and the `d`-axis in the rotating `dq` frame.
 
 ---
 
-### 🔄 6. Inverse Clarke Transformation (αβ → ABC)
-
-# Inverse Clarke Transform
+# 🧮 Inverse Clarke Transformation (αβ → ABC)
 
 ## Description
 
-Description
-The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary αβ reference frame and outputs the balanced, three-phase components in the stationary abc reference frame. Alternatively, the block can compute Inverse Clarke transformation of the components α, β, and 0 to output the three-phase components a, b, and c. For a balanced system, the zero component is equal to zero. Use the Number of inputs parameter to use either two or three inputs.
+The Inverse Clarke Transform block computes the Inverse Clarke transformation of balanced, two-phase orthogonal components in the stationary `αβ` reference frame and outputs the balanced, three-phase components in the stationary `abc` reference frame. 
 
-The block accepts the α-β axis components as inputs and outputs the corresponding three-phase signals, where the phase-a axis aligns with the α-axis.
+Alternatively, the block can compute Inverse Clarke transformation of the components `α, β`, and `0` to output the three-phase components `a, b`, and `c`. 
 
-The α and β input components in the αβ reference frame.
+For a balanced system, the zero component is equal to zero. 
 
+Use the **Number of inputs** parameter to use either two or three inputs.
 
-The d-axis aligns with the α-axis.
+The block accepts the `α-β` axis components as inputs and outputs the corresponding three-phase signals, where the phase-`a` axis aligns with the `α`-axis.
 
-* The figure below shows the direction of the magnetic axes of the stator windings in the `abc` reference frame and the stationary `αβ` reference frame:
+* The `α` and `β` input components in the `αβ` reference frame.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Alpha%20and%20Beta%20Input%20Components%20in%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 16:</b> The Alpha and Beta Input Components in the AlphaBeta  Reference Frame</p>  
 
 
-* The figure below shows the equivalent `α` and `β` components in the stationary `αβ` reference frame:
+* The direction of the equivalent `a, b`, and `c` output components in the `abc` reference frame and the `αβ` reference frame.
 
  <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Equivalent%20A%2C%20B%2C%20and%20C%20Components%20in%20the%20ABC%20Reference%20Frame%20and%20the%20AlphaBeta%20%20Reference%20Frame.png" width="200">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
+<p align="center"><b>Figure 17:</b> The Equivalent A, B, and C Components in the ABC Reference Frame and the AlphaBeta  Reference Frame</p>  
 
+The time-response of the individual components of equivalent balanced `αβ` and `abc` systems.
 
 <p align="center">
   <img src="https://github.com/vandemataram15aug1947/Indirect_Sensor_Based_FOC_of_Three_Phase_ACIM_Using_SVPWM/blob/88d267bc8549baf1331a0f4b34dad696946cbcbf/Inverse%20Clarke%20Transformation/The%20Time-Response%20of%20the%20Individual%20Components%20of%20Equivalent%20Balanced%20AlphaBeta%20%20and%20ABC%20systems.png" width="550">
 </p>  
 
-<p align="center"><b>Figure 4:</b> Dynamic Saturation in the RRF</p>  
-
-The direction of the equivalent a, b, and c output components in the abc reference frame and the αβ reference frame.
-
-
-
-The time-response of the individual components of equivalent balanced αβ and abc systems.
+<p align="center"><b>Figure 18:</b> The Time-Response of the Individual Components of Equivalent Balanced AlphaBeta  and ABC systems</p>  
 
 ---
 
-## Inverse Clarke Transform Equation (αβ → abc)
+## Equations (αβ → abc)
 
-For a balanced three-phase system (no zero-sequence component):
+The following equation describes the **Inverse Clarke Transform** computation:
 
 ```math
 \begin{bmatrix}
 f_a \\
 f_b \\
-f_c
-\end{bmatrix}
-=
-\begin{bmatrix}
-1 & 0 \\
--0.5 & \frac{\sqrt{3}}{2} \\
--0.5 & -\frac{\sqrt{3}}{2}
-\end{bmatrix}
-\begin{bmatrix}
-f_\alpha \\
-f_\beta
-\end{bmatrix}
-```
-
-This form assumes the zero-sequence component is zero (which is valid in motor applications with balanced loads).
-
----
-
-## Full Inverse Clarke Transform (αβ0 → abc)
-
-If the zero-sequence component (`f₀`) is non-zero:
-
-```math
-\begin{bmatrix}
-f_a \\
-f_b \\
-f_c
+f_c \\
 \end{bmatrix}
 =
 \begin{bmatrix}
 1 & 0 & 1 \\
--0.5 & \frac{\sqrt{3}}{2} & 1 \\
--0.5 & -\frac{\sqrt{3}}{2} & 1
+-\frac{1}{2} & \frac{\sqrt{3}}{2} & 1 \\
+-\frac{1}{2} & -\frac{\sqrt{3}}{2} & 1 \\
 \end{bmatrix}
 \begin{bmatrix}
-f_\alpha \\
-f_\beta \\
-f_0
+f_α \\
+f_β \\
+f₀ \\
 \end{bmatrix}
 ```
 
-This version is more general but not typically needed in most FOC systems.
+For balanced systems like motors, the zero-sequence component calculation is always zero:
 
----
+```math
+i_a + i_b + i_c = 0
+```
+
+Therefore, you can use only two current sensors in three-phase motor drives, where you can calculate the third phase as:
+
+```math
+i_c = -(i_a + i_b)
+```
+
+By using these equations, the block implements the **Inverse Clarke Transform** as:
+
+```math
+\begin{bmatrix}
+f_a \\
+f_b \\
+f_c \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+-\frac{1}{2} & \frac{\sqrt{3}}{2} \\
+-\frac{1}{2} & -\frac{\sqrt{3}}{2} \\
+\end{bmatrix}
+\begin{bmatrix}
+f_α \\
+f_β \\
+\end{bmatrix}
+```
 
 ### Where,
 
-- `f_a` is the **Phase-A component** in the `abc` frame.
-- `f_b` is the **Phase-B component** in the `abc` frame.
-- `f_c` is the **Phase-C component** in the `abc` frame.
-- `f_α` is the **Alpha-axis component** in the stationary `αβ` frame.
-- `f_β` is the **Beta-axis component** in the stationary `αβ` frame.
-- `f₀` is the **Zero-sequence component** (optional in balanced systems).
+- `f_α` and `f_β` are the balanced two-phase orthogonal components in the **stationary `αβ` reference frame**.
+- `f₀` is the **zero-sequence component** in the stationary `αβ` reference frame.
+- `f_a`, `f_b`, and `f_c` are the balanced three-phase components in the **`abc` reference frame**.
+
+
+# 🔲 Space Vector Pulse Width Modulation (SVPWM)
+
+## 📘 Introduction
+
+Space Vector Pulse Width Modulation (SVPWM) is an advanced PWM technique used to control three-phase inverters more efficiently than traditional sinusoidal PWM. By treating the inverter as a single unit, SVPWM synthesizes the desired output voltage vector through a combination of switching states. This approach improves DC bus utilization, reduces total harmonic distortion (THD), and enhances overall system efficiency.
 
 ---
 
-### 🔲 7. Space Vector PWM (SVPWM)
+## 🧠 Theory
 
-Generates PWM switching signals from the three-phase voltages to apply to the motor via the inverter.  
-SVPWM:
-- Maximizes bus voltage usage
-- Reduces harmonic distortion
+SVPWM treats the three-phase inverter output as a single rotating vector in a two-dimensional α-β plane (also called the Clarke transformation plane). Instead of controlling three separate phase voltages directly, SVPWM computes an equivalent voltage vector `Vref` that represents the desired three-phase voltages at that moment in time.
 
----
-
-### 🔌 8. Three-Phase Inverter
-
-- A six-switch bridge using MOSFETs/IGBTs
-- Converts PWM signals into sinusoidal 3-phase voltages
-- Drives the AC motor
+- Use 6 active and 2 zero voltage vectors  
+- Divide space vector plane into 6 sectors (each 60° wide)  
+- Represent the desired voltage vector `Vref` using time-weighted combinations of adjacent active vectors and zero vectors within one PWM cycle
 
 ---
 
-### 🧭 9. Rotor Position and Speed Feedback
+## 🧮 Step-by-Step Mathematical Explanation
 
-- Obtained from a rotary encoder or resolver
-- Provides \( \theta \) and \( \omega \) for Park/Inverse Park transforms and speed loop
-- Essential for correct orientation of control vectors
+### Clarke Transformation (abc → αβ)
+
+Convert three-phase quantities into 2D orthogonal components:
+
+### Given,
+
+```math
+V_a = V_m \cos(\omega t)
+```
+
+```math
+V_b = V_m \cos(\omega t - 120^\circ)
+```
+
+```math
+V_c = V_m \cos(\omega t + 120^\circ)
+```
+
+Clarke transform gives:
+
+```math
+V_\alpha = V_a
+```
+
+```math
+V_\beta = \frac{1}{\sqrt{3}} (V_b - V_c)
+```
+
+Then, construct the space vector:
+
+```math
+\vec{V}_{ref} = V_\alpha + j V_\beta
+```
+
+---
+
+### Determine the Sector
+
+Calculate the angle \( \theta \) of the reference vector:
+
+```math
+\theta = \tan^{-1}\left(\frac{V_\beta}{V_\alpha}\right)
+```
+
+Use this angle to determine in which of the 6 sectors the vector lies.
+
+---
+
+# SVPWM Vector Times Calculation
+
+This project calculates the vector times $T_1$, $T_2$, and $T_0$ for Space Vector Pulse Width Modulation (SVPWM). The SVPWM technique is used to control three-phase inverters and optimize the output voltage to drive the motor effectively. The calculation of the vector times is based on decomposing the reference vector $\vec{V}_{ref}$ into adjacent vectors $\vec{V}_1$, $\vec{V}_2$, and the zero vector $\vec{V}_0$.
+
+## Formulae for Calculation
+
+The vector times are computed based on the following parameters:
+- $T_s$: PWM period
+- $V_{dc}$: DC bus voltage
+- $|\vec{V}_{ref}|$: Magnitude of the reference vector
+- $\theta$: Angle of $\vec{V}_{ref}$ within the sector
+
+## ⏱️ Time Calculations for Space Vector PWM (SVPWM)
+
+In Space Vector Pulse Width Modulation, the time durations for active vectors **$\vec{V}_1$**, **$\vec{V}_2$**, and the zero vector are computed as follows for a given sampling period $T_s$:
+
+### Duration of Vector $\vec{V}_1$ (Time $T_1$)
+
+```math
+T_1 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin\left(\frac{\pi}{3} - \theta\right)
+```
+
+### Duration of Vector $\vec{V}_2$ (Time $T_2$)
+
+```math
+T_2 = \frac{T_s \cdot |\vec{V}_{\text{ref}}|}{V_{dc}} \cdot \sin(\theta)
+```
+
+### Duration of Vector $T_0$ (Zero vector time):
+
+    ```math
+    T_0 = T_s - T_1 - T_2
+    ```
+
+### Explanation:
+- $T_1$: The time duration for the adjacent vector $\vec{V}_1$.
+- $T_2$: The time duration for the adjacent vector $\vec{V}_2$.
+- $T_0$: The time for the zero vector $\vec{V}_0$, which is used for symmetry.
+
+### Sector Consideration:
+- The reference vector $\vec{V}_{ref}$ lies in one of the six sectors of the hexagonal voltage space.
+- The angle $\theta$ represents the position of the reference vector within a specific sector. This angle is used to calculate the respective vector times.
+
+### How to Use:
+1. **Input Parameters**:
+    - Define the PWM period $T_s$.
+    - Set the DC bus voltage $V_{dc}$.
+    - Input the magnitude $|\vec{V}_{ref}|$ of the reference vector.
+    - Input the angle $\theta$ of the reference vector in the specific sector.
+
+2. **Calculation**:
+    - Use the above formulae to compute the values of $T_1$, $T_2$, and $T_0$.
+
+3. **Output**:
+    - The calculated times $T_1$, $T_2$, and $T_0$ can be used in generating PWM signals to control the inverter or motor drive.
+
+## Example:
+
+For a given scenario where:
+- $V_{dc} = 400 \, \text{V}$
+- $|\vec{V}_{ref}| = 230 \, \text{V}$
+- $\theta = 30^\circ$ (in radians: $\theta = \pi / 6$)
+- $T_s = 20 \, \mu s$
+
+You can calculate the vector times using the above formulae.
+
 
 ---
 
 
-## Code Explanation
+# Code Explanation
 
-### Include Required Header Files
+## Include Required Header Files
 
 ```c
 #include "stdint.h"         /* Standard integer types */
@@ -1727,7 +1794,7 @@ Here is a list of the headers used in this project and their specific functional
 
 ### Code Implementation
 
-#### Global Variables
+### Global Variables
 ```c
 /* Global Variables */
 float i_alpha, i_beta;      /* Alpha-beta current components */
@@ -1741,7 +1808,7 @@ float i_d_ref = 0.0f;       /* d-axis current reference */
 float i_q_ref = 2.0f;       /* q-axis current reference */
 ```
 
-#### Encoder Read (Position Feedback)
+### Encoder Read (Position Feedback)
 ```c
 /* Encoder Read Function */
 /* Reads the current rotor position from encoder */
@@ -1750,7 +1817,7 @@ float encoder_read() {
 }
 ```
 
-#### Clarke Transform (ABC to αβ)
+### Clarke Transform (ABC to αβ)
 ```c
 /* Clarke Transform Function */
 /* Converts 3-phase current (i_a, i_b, i_c) to 2-phase orthogonal (i_alpha, i_beta) */
@@ -1760,7 +1827,7 @@ void clarke_transform(float i_a, float i_b, float i_c) {
 }
 ```
 
-#### Park Transform (αβ → dq)
+### Park Transform (αβ → dq)
 ```c
 /* Park Transform Function */
 /* Converts (i_alpha, i_beta) into rotating reference frame components (i_d, i_q) */
@@ -1773,7 +1840,7 @@ void park_transform(float theta) {
 }
 ```
 
-#### Speed PI Controller
+### Speed PI Controller
 ```c
 /* Speed PI Controller */
 /* Implements a basic PI controller for speed regulation */
@@ -1808,7 +1875,7 @@ void current_pi_control() {
 }
 ```
 
-#### Inverse Park Transform (dq → αβ)
+### Inverse Park Transform (dq → αβ)
 ```c
 /* Inverse Park Transform Function */
 /* Converts (v_d, v_q) from rotating to stationary reference frame (v_alpha, v_beta) */
@@ -1821,7 +1888,7 @@ void inverse_park_transform(float theta) {
 }
 ```
 
-#### SVPWM Generation
+### SVPWM Generation
 ```c
 #include "driverlib.h"
 #include "math.h"
@@ -1886,7 +1953,7 @@ void generate_svpwm_pulses(float v_alpha, float v_beta) {
 }
 ```
 
-#### Main Loop
+### Main Loop
 ```c
 /* Main Entry Point */
 int main() {
